@@ -1,5 +1,6 @@
 import React from "react";
 import './App.css';
+
 import {Button, Container, Navbar} from 'react-bootstrap';
 import { BrowserRouter, Routes, Route, Link } from 'react-router-dom';
 import 'bootstrap/dist/css/bootstrap.min.css';
@@ -31,6 +32,18 @@ function App() {
 
           </div>
       </BrowserRouter>
+
+import 'bootstrap/dist/css/bootstrap.min.css';
+import { Navbar, Nav, Container } from "react-bootstrap";
+function App() {
+  return (
+      <Navbar>
+        <Container>
+            <Nav.Item>CREATORVERSE</Nav.Item>
+        </Container>
+      </Navbar>
+
+
   );
 }
 
