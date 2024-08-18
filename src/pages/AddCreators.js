@@ -2,13 +2,14 @@ import React from 'react';
 import { Container, Row, Col, Button, Form } from 'react-bootstrap';
 import { useState } from 'react';
 import {supabase} from "../client";
-
+import {useNavigate, useNavigation} from 'react-router-dom';
 
 function AddCreators() {
     const [name, setName] = useState('');
     const [description, setDescription] = useState('');
     const [imageURL, setImageURL] = useState('');
     const [url, setUrl] = useState('');
+    const navigate = useNavigate();
 
     async function handleSubmit() {
         try{
@@ -23,6 +24,7 @@ function AddCreators() {
                 .single()
             if (error) throw error;
             window.location.reload()
+            navigate('/ShowCreators');
         } catch (error){
             alert(error.message);
         }
