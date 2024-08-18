@@ -1,4 +1,6 @@
-import { supabase } from './client'; // Adjust the path to your supabase client file
+import { supabase } from '../client';
+
+
 
 export async function deleteCreator(id) {
     try {
@@ -8,6 +10,7 @@ export async function deleteCreator(id) {
             .eq('id', id);
 
         if (error) throw error;
+        window.location.reload();
         console.log(`Creator with id ${id} deleted successfully.`);
     } catch (error) {
         console.error('Error deleting creator:', error.message);
