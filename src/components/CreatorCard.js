@@ -1,6 +1,6 @@
 import { Card, Button, Form, Container } from 'react-bootstrap';
 import React, { useState, useEffect } from 'react';
-
+import EditCreators from "../pages/EditCreators";
 
 const CreatorCard = (props) => {
 
@@ -17,58 +17,34 @@ const CreatorCard = (props) => {
         height: '300px,'
     };
 
+    const cardBodyStyle ={
+        display: 'flex',
+        flexDirection: 'column',
+        justifyContent: 'space-between',
+        height: '100%',
+    };
+
 
 
 
     return (
-            <Card style = {{width:"18rem"}}>
-                <Card.Body>
-                    { editing === false ?
-                        <>
+        <Card style={{ width: "18rem", height: "250px" }}>
+            <Card.Body style = {cardBodyStyle}>
+                {editing === false ? (
+                    <>
                         <Card.Title>{creator.name}</Card.Title>
                         <Card.Text>{creator.description}</Card.Text>
-                        <Card.Link href={creator.url}></Card.Link>
+                        <Button href={creator.url}>link</Button>
                         <Button variant="secondary" onClick={() => setEditing(true)}>Edit</Button>
-                        </>
-                :
-                        <>
-                            <Button onClick={() => setEditing(false)}> Submit </Button>
-                            <Button variant="danger" className={"mx-3"}> Delete </Button>
-                            <br />
-                            <Form.Label>NAME GOES HERE</Form.Label>
-                            <Form.Control
-                                type={"text"}
-                                id="name"
-                                defaultValue={creator.name}
-                                onChange={(e) => setName(e.target.value)}
-                            />
-                            <Form.Label>imgURL</Form.Label>
-                            <Form.Control
-                                type={"text"}
-                                id="url"
-                                defaultValue={creator.url}
-                                onChange={(e) => setUrl(e.target.value)}
-                            />
-                            <Form.Label>description</Form.Label>
-                            <Form.Control
-                                type={"text"}
-                                id="description"
-                                defaultValue={creator.description}
-                                onChange={(e) => setDescription(e.target.value)}
-                            />
-                            <Form.Label>Image</Form.Label>
-                            <Form.Control
-                                type={"text"}
-                                id="imageURL"
-                                defaultValue={creator.imageURL}
-                                onChange={(e) => setDescription(e.target.value)}
-                            />
-
-                        </>
-                    }
-                </Card.Body>
-
-            </Card>
+                    </>
+                ) : (
+                    <>
+                        <EditCreators creator={creator} />
+                        <Button variant="secondary" onClick={() => setEditing(false)}>Cancel</Button>
+                    </>
+                )}
+            </Card.Body>
+        </Card>
 
 
     );
